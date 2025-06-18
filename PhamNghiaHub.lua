@@ -1,50 +1,57 @@
--- Phạm Nghĩa Hub (v1.0) – Không cần key, có thể kéo được
+-- Phạm Nghĩa Hub (v1.2) – Không cần key, có thể kéo được
 
 -- Load UI library
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/library.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Phạm Nghĩa Hub", "Ocean")
+Window.draggable = true  -- Cho phép kéo menu
 
--- Cho phép kéo menu
-Window.draggable = true
+-- 📌 TAB 1: Thông Tin
+local t1 = Window:NewTab("📌 Thông Tin")
+local s1 = t1:NewSection("User Info")
+s1:NewLabel("Tên: " .. game.Players.LocalPlayer.Name)
+s1:NewLabel("Level: <chưa tích hợp>")
+s1:NewLabel("Map hiện tại: <chưa tích hợp>")
+s1:NewLabel("Trạng thái: Đang chờ")
 
--- Khởi tạo UI chính
-Window:Init(function()
-    -- ==== TAB: Thông Tin =====
-    local t1 = Window:NewTab("📌 Thông Tin")
-    local s1 = t1:NewSection("User Info")
-    s1:NewLabel("Tên: "..game.Players.LocalPlayer.Name)
-    s1:NewLabel("Level: <chưa tích hợp>")
-    s1:NewLabel("Map hiện tại: <chưa tích hợp>")
-    s1:NewLabel("Trạng thái: Đang chờ")
+-- ⚔️ TAB 2: Auto Farm
+local t2 = Window:NewTab("⚔️ Auto Farm")
+local s2 = t2:NewSection("Cài đặt farm")
+s2:NewToggle("Auto Farm Level", "", function(v) _G.AutoFarmLevel = v end)
+s2:NewToggle("Auto Farm Bone", "", function(v) _G.AutoFarmBone = v end)
+s2:NewToggle("Auto Farm Chest", "", function(v) _G.AutoFarmChest = v end)
+s2:NewToggle("Auto Farm Mastery", "", function(v) _G.AutoFarmMaster = v end)
 
-    -- ==== TAB: Auto Farm =====
-    local t2 = Window:NewTab("⚔️ Auto Farm")
-    local s2 = t2:NewSection("Cài đặt farm")
-    s2:NewToggle("Auto Farm Level", "", function(v) _G.AutoFarmLevel = v end)
-    s2:NewToggle("Auto Farm Bone", "", function(v) _G.AutoFarmBone = v end)
-    s2:NewToggle("Auto Farm Chest", "", function(v) _G.AutoFarmChest = v end)
-    s2:NewToggle("Auto Farm Mastery", "", function(v) _G.AutoFarmMaster = v end)
+-- 👑 TAB 3: Auto Boss
+local t3 = Window:NewTab("👑 Auto Boss")
+local s3 = t3:NewSection("Boss")
+s3:NewButton("Auto Kill Saber", "", function() _G.AutoKillSaber = true end)
+s3:NewButton("TP đến Saber", "", function() end) -- TODO
 
-    -- ==== TAB: Auto Boss =====
-    local t3 = Window:NewTab("👑 Auto Boss")
-    local s3 = t3:NewSection("Boss")
-    s3:NewButton("Auto Kill Saber", "", function()
-        -- TODO: code kill boss ở đây
-    end)
-    s3:NewButton("TP đến Boss", "", function()
-        -- TODO: teleport đến boss
-    end)
+-- 👻 TAB 4: ESP & Misc
+local t4 = Window:NewTab("👻 ESP & Misc")
+local s4 = t4:NewSection("ESP")
+s4:NewToggle("ESP Player", "", function(v) _G.ESPPlayer = v end)
+s4:NewToggle("ESP Chest", "", function(v) _G.ESPChest = v end)
 
-    -- ==== TAB: Misc =====
-    local t4 = Window:NewTab("⚙️ Misc")
-    local s4 = t4:NewSection("Tùy chỉnh chung")
-    s4:NewSlider("Tốc độ chạy", "Đi nhanh hơn", 100, 500, function(val)
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
-    end)
-    s4:NewToggle("Fly", "Bay trên không", function(v)
-        _G.FlyEnabled = v
-        -- TODO: code fly
-    end)
+-- 🌀 TAB 5: Auto Haki + Awakening
+local t5 = Window:NewTab("🌀 Auto Haki + Awakening")
+local s5 = t5:NewSection("Tự động")
+s5:NewToggle("Auto Bật Haki", "", function(v) _G.AutoHaki = v end)
+s5:NewToggle("Auto Awakening Skill", "", function(v) _G.AutoAwaken = v end)
 
-    -- Tab khác, Nhiệm vụ, Auto Raid... anh thêm tùy chỉnh dán vào sau đây
-end)  -- <-- Kết thúc Window:Init
+-- 🍇 TAB 6: Trái Ác Quỷ
+local t6 = Window:NewTab("🍇 Trái Ác Quỷ")
+local s6 = t6:NewSection("Trái")
+s6:NewToggle("Auto Nhặt Trái", "", function(v) _G.AutoPickFruit = v end)
+s6:NewToggle("Auto Mua Trái", "", function(v) _G.AutoBuyFruit = v end)
+
+-- 📍 TAB 7: Teleport
+local t7 = Window:NewTab("📍 Teleport")
+local s7 = t7:NewSection("Dịch chuyển")
+s7:NewButton("Đến NPC Blox Fruit Dealer", function() end)
+s7:NewButton("Đến Đảo Snow", function() end)
+
+-- 💾 TAB 8: Lưu Trạng Thái Auto
+local t8 = Window:NewTab("💾 Trạng thái Auto")
+local s8 = t8:NewSection("Tự động lưu")
+s8:NewToggle("Lưu trạng thái Auto", "", function(v) _G.SaveAutoState = v end)
