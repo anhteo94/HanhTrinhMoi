@@ -34,10 +34,7 @@ function ScriptLoader:LoadScript(entry)
     end
 end
 
-function ScriptLoader:LoadForPlace(PlaceId)
-    local entry = self:GetScriptEntry(PlaceId)
-    self:LoadScript(entry)
-end
+
 
 ScriptLoader:LoadForPlace(game.PlaceId)
-return ScriptLoader
+
