@@ -1,27 +1,15 @@
 -- Phạm Nghĩa Hub (v1.0)
 -- Yêu cầu key: phamnghia123
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Pham Nghia Hub", "Ocean")
+-- Phạm Nghĩa Hub (v1.0)
 
--- ===== HỆ THỐNG KEY =====
-local key = "phamnghia123"
-local input = Window:NewTab("🔒 Key")
-local keySection = input:NewSection("Nhập KEY")
-keySection:NewTextBox("Key:", "Nhập key để tiếp tục", function(v)
-    if v ~= key then
-        game.Players.LocalPlayer:Kick("Key sai. Liên hệ @".."AnhteoTikTok")
-    else
-        Library:CreateLib("") -- mở UI tiếp
-        game.StarterGui:SetCore("SendNotification", {
-            Title = "✅", Text = "Key hợp lệ! Hub đang được tải...";
-            Duration = 3
-        })
-        delay(1, function()
-            Window:RemoveTab(input)
-            Window:Init() -- khởi tạo UI chính
-        end)
-    end
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/anhteo94/HanhTrinhMoi/main/Library.lua"))()
+local Window = Library.CreateLib("Phạm Nghĩa Hub", "Ocean")
+Window.draggable = true  -- ← Cho phép kéo
+
+Window:Init()  -- Gọi hàm tạo UI chính
+
+    
 end)
 
 -- Hàm hỗ trợ tạo UI chỉ chạy sau xác thực
