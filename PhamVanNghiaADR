@@ -1,0 +1,84 @@
+-- GUI Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("🌟 Phạm Nghĩa iOS Hub", "Ocean")
+
+-- 📌 Thông Tin
+local TabInfo = Window:NewTab("📌 Thông Tin")
+local SectionInfo = TabInfo:NewSection("Thông tin người chơi")
+SectionInfo:NewLabel("Tên: "..game.Players.LocalPlayer.Name)
+SectionInfo:NewLabel("Level: "..game.Players.LocalPlayer.Data.Level.Value)
+
+-- ⚔️ Auto Farm
+local TabFarm = Window:NewTab("⚔️ Auto Farm")
+local SectionFarm = TabFarm:NewSection("Farm Level / Mastery")
+SectionFarm:NewButton("Auto Farm Level", "Tự farm lên cấp", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/CokkaHub.lua"))()
+end)
+SectionFarm:NewButton("Auto Farm Mastery", "Farm mastery cho trái / kiếm", function()
+    -- Thêm code nếu có hub phụ
+end)
+
+-- 👑 Auto Boss
+local TabBoss = Window:NewTab("👑 Auto Boss")
+local SectionBoss = TabBoss:NewSection("Boss")
+SectionBoss:NewButton("Auto Kill Boss", "Đánh boss tự động", function()
+    -- Code xử lý boss
+end)
+SectionBoss:NewButton("TP đến Boss", "Dịch chuyển đến Boss", function()
+    -- TP boss
+end)
+
+-- 🌎 Teleport
+local TabTP = Window:NewTab("🌎 Teleport")
+local SectionTP = TabTP:NewSection("Dịch chuyển nhanh")
+SectionTP:NewButton("TP Sea 1", "", function() end)
+SectionTP:NewButton("TP Sea 2", "", function() end)
+SectionTP:NewButton("TP Sea 3", "", function() end)
+
+-- 💎 Tab Sea 3
+local TabSea3 = Window:NewTab("💎 Sea 3")
+local SectionSea3 = TabSea3:NewSection("Tính năng riêng Sea 3")
+SectionSea3:NewButton("Auto Farm Sea 3", "Farm tại Sea 3", function()
+    -- Code riêng
+end)
+SectionSea3:NewButton("Auto Kill Longma", "Kill boss Longma", function()
+    -- Code Longma
+end)
+
+-- 🌀 Awakening / V2 V3
+local TabAwake = Window:NewTab("🌀 Awakening / V2-V3")
+local SectionAwake = TabAwake:NewSection("Auto nâng sức mạnh")
+SectionAwake:NewButton("Auto Awaken Skill", "", function() end)
+SectionAwake:NewButton("Auto Unlock V2/V3", "", function() end)
+
+-- 🍇 Trái Ác Quỷ
+local TabFruit = Window:NewTab("🍇 Trái Ác Quỷ")
+local SectionFruit = TabFruit:NewSection("ESP / Mua / Nhặt")
+SectionFruit:NewButton("ESP Trái", "", function() end)
+SectionFruit:NewButton("Auto Lượm Trái", "", function() end)
+SectionFruit:NewButton("Auto Mua Trái", "", function() end)
+
+-- 📦 Item / Quest
+local TabItem = Window:NewTab("📦 Item / Quest")
+local SectionItem = TabItem:NewSection("Tự nhận nhiệm vụ / lấy vũ khí")
+SectionItem:NewButton("Auto Nhận Quest", "", function() end)
+SectionItem:NewButton("Lấy Yama", "", function() end)
+SectionItem:NewButton("Lấy Tushita", "", function() end)
+SectionItem:NewButton("Mở cửa Yama", "", function() end)
+
+-- 🔥 Auto Raid
+local TabRaid = Window:NewTab("🔥 Auto Raid")
+local SectionRaid = TabRaid:NewSection("Tự vào Raid / Awaken")
+SectionRaid:NewButton("Auto Join Raid", "", function() end)
+SectionRaid:NewButton("Auto Awaken Skill", "", function() end)
+
+-- 👻 ESP & Misc
+local TabMisc = Window:NewTab("👻 ESP & Khác")
+local SectionMisc = TabMisc:NewSection("ESP + Hack Tốc")
+SectionMisc:NewButton("ESP Người Chơi", "", function() end)
+SectionMisc:NewSlider("Tốc độ chạy", "Đi nhanh hơn", 100, 16, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+SectionMisc:NewToggle("Fly", "Bay trên không", function(state)
+    -- Fly code
+end)
