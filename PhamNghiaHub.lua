@@ -1,64 +1,48 @@
--- Phạm Nghĩa Hub (v1.2) – Không cần key, có thể kéo menu được
+-- Phạm Nghĩa Hub v1.2 (Full chức năng - Không cần key)
 
--- Load UI library
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/anhteo94/HanhTrinhMoi/main/UILib.lua"))()
-local Window = Library.CreateLib("Phạm Nghĩa Hub", "Ocean")
+-- Load UI Library hoạt động (bản Kavo sửa)
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+local Window = Library:MakeWindow({Name = "Phạm Nghĩa Hub", HidePremium = false, SaveConfig = true, ConfigFolder = "PhamNghiaConfig"})
 
--- Cho phép kéo menu
-Window.draggable = true
+-- TAB 1: Thông Tin
+local Tab1 = Window:MakeTab({Name = "📋 Thông Tin", Icon = "rbxassetid://6023426926", PremiumOnly = false})
+Tab1:AddLabel("Tên: " .. game.Players.LocalPlayer.Name)
+Tab1:AddLabel("Level: <chưa tích hợp>")
+Tab1:AddLabel("Map hiện tại: <chưa tích hợp>")
+Tab1:AddLabel("Trạng thái: Đang chờ")
 
--- Khởi tạo giao diện chính
-Window:Init(function()
+-- TAB 2: Auto Farm
+local Tab2 = Window:MakeTab({Name = "⚔️ Auto Farm", Icon = "rbxassetid://6031075938", PremiumOnly = false})
+Tab2:AddToggle("Auto Farm Level", nil, function(v) _G.AutoFarmLevel = v end)
+Tab2:AddToggle("Auto Farm Bone", nil, function(v) _G.AutoFarmBone = v end)
+Tab2:AddToggle("Auto Farm Chest", nil, function(v) _G.AutoFarmChest = v end)
+Tab2:AddToggle("Auto Farm Mastery", nil, function(v) _G.AutoFarmMastery = v end)
 
-    -- 📋 TAB 1: Thông Tin
-    local t1 = Window:NewTab("📋 Thông Tin")
-    local s1 = t1:NewSection("User Info")
-    s1:NewLabel("Tên: " .. game.Players.LocalPlayer.Name)
-    s1:NewLabel("Level: <chưa tích hợp>")
-    s1:NewLabel("Map hiện tại: <chưa tích hợp>")
-    s1:NewLabel("Trạng thái: Đang chờ")
+-- TAB 3: Auto Boss
+local Tab3 = Window:MakeTab({Name = "👑 Auto Boss", Icon = "rbxassetid://6031080022", PremiumOnly = false})
+Tab3:AddButton("Auto Kill Saber", function() _G.AutoKillSaber = true end)
+Tab3:AddButton("TP đến Saber", function() end)
 
-    -- ⚔️ TAB 2: Auto Farm
-    local t2 = Window:NewTab("⚔️ Auto Farm")
-    local s2 = t2:NewSection("Cài đặt farm")
-    s2:NewToggle("Auto Farm Level", "", function(v) _G.AutoFarmLevel = v end)
-    s2:NewToggle("Auto Farm Bone", "", function(v) _G.AutoFarmBone = v end)
-    s2:NewToggle("Auto Farm Chest", "", function(v) _G.AutoFarmChest = v end)
-    s2:NewToggle("Auto Farm Mastery", "", function(v) _G.AutoFarmMastery = v end)
+-- TAB 4: ESP & Misc
+local Tab4 = Window:MakeTab({Name = "☠️ ESP & Misc", Icon = "rbxassetid://6031154879", PremiumOnly = false})
+Tab4:AddToggle("ESP Player", nil, function(v) _G.ESPPlayer = v end)
+Tab4:AddToggle("ESP Chest", nil, function(v) _G.ESPChest = v end)
 
-    -- 👑 TAB 3: Auto Boss
-    local t3 = Window:NewTab("👑 Auto Boss")
-    local s3 = t3:NewSection("Boss")
-    s3:NewButton("Auto Kill Saber", "", function() _G.AutoKillSaber = true end)
-    s3:NewButton("TP đến Saber", "", function() end)
+-- TAB 5: Auto Haki + Awakening
+local Tab5 = Window:MakeTab({Name = "🌊 Auto Haki + Awakening", Icon = "rbxassetid://6031068429", PremiumOnly = false})
+Tab5:AddToggle("Auto Bật Haki", nil, function(v) _G.AutoHaki = v end)
+Tab5:AddToggle("Auto Awakening Skill", nil, function(v) _G.AutoAwakening = v end)
 
-    -- 👻 TAB 4: ESP & Misc
-    local t4 = Window:NewTab("👻 ESP & Misc")
-    local s4 = t4:NewSection("ESP")
-    s4:NewToggle("ESP Player", "", function(v) _G.ESPPlayer = v end)
-    s4:NewToggle("ESP Chest", "", function(v) _G.ESPChest = v end)
+-- TAB 6: Trái Ác Quỷ
+local Tab6 = Window:MakeTab({Name = "🍇 Trái Ác Quỷ", Icon = "rbxassetid://6031074749", PremiumOnly = false})
+Tab6:AddToggle("Auto Nhặt Trái", nil, function(v) _G.AutoPickFruit = v end)
+Tab6:AddToggle("Auto Mua Trái", nil, function(v) _G.AutoBuyFruit = v end)
 
-    -- 🌀 TAB 5: Auto Haki + Awakening
-    local t5 = Window:NewTab("🌀 Auto Haki + Awakening")
-    local s5 = t5:NewSection("Tự động")
-    s5:NewToggle("Auto Bật Haki", "", function(v) _G.AutoHaki = v end)
-    s5:NewToggle("Auto Awakening Skill", "", function(v) _G.AutoAwakening = v end)
+-- TAB 7: Teleport
+local Tab7 = Window:MakeTab({Name = "📍 Teleport", Icon = "rbxassetid://6035199329", PremiumOnly = false})
+Tab7:AddButton("Đến NPC Blox Fruit Dealer", function() end)
+Tab7:AddButton("Đến Đảo Snow", function() end)
 
-    -- 🍇 TAB 6: Trái Ác Quỷ
-    local t6 = Window:NewTab("🍇 Trái Ác Quỷ")
-    local s6 = t6:NewSection("Trái")
-    s6:NewToggle("Auto Nhặt Trái", "", function(v) _G.AutoPickFruit = v end)
-    s6:NewToggle("Auto Mua Trái", "", function(v) _G.AutoBuyFruit = v end)
-
-    -- 📍 TAB 7: Teleport
-    local t7 = Window:NewTab("📍 Teleport")
-    local s7 = t7:NewSection("Dịch chuyển")
-    s7:NewButton("Đến NPC Blox Fruit Dealer", function() end)
-    s7:NewButton("Đến Đảo Snow", function() end)
-
-    -- 💾 TAB 8: Lưu Trạng Thái Auto
-    local t8 = Window:NewTab("💾 Trạng thái Auto")
-    local s8 = t8:NewSection("Tự động lưu")
-    s8:NewToggle("Lưu trạng thái Auto", "", function(v) _G.SaveAutoState = v end)
-
-end)
+-- TAB 8: Lưu Trạng Thái Auto
+local Tab8 = Window:MakeTab({Name = "💾 Trạng thái Auto", Icon = "rbxassetid://6031091002", PremiumOnly = false})
+Tab8:AddToggle("Lưu trạng thái Auto", nil, function(v) _G.SaveAuto = v end)
